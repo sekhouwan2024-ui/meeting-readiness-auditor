@@ -1,5 +1,9 @@
 # Meeting Readiness Auditor
 
+[![test](https://github.com/sekhouwan2024-ui/meeting-readiness-auditor/actions/workflows/test.yml/badge.svg)](https://github.com/sekhouwan2024-ui/meeting-readiness-auditor/actions/workflows/test.yml)
+[![release](https://img.shields.io/github/v/release/sekhouwan2024-ui/meeting-readiness-auditor)](https://github.com/sekhouwan2024-ui/meeting-readiness-auditor/releases/latest)
+[![license](https://img.shields.io/github/license/sekhouwan2024-ui/meeting-readiness-auditor)](LICENSE)
+
 [中文说明](README.zh-CN.md)
 
 An open-source Codex Skill that audits a business presentation against its supporting files, separates confirmed errors from unresolved risks, and prepares evidence-grounded answers for the meeting that follows.
