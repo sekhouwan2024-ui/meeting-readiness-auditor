@@ -1,0 +1,150 @@
+{
+  "report_title": "Demo Company May Operating Review | Meeting Readiness Report",
+  "meeting_context": {
+    "meeting_type": "Monthly operating review",
+    "audience_roles": ["CEO", "Finance lead", "Growth lead"],
+    "meeting_goal": "Assess May performance and decide the June acquisition budget"
+  },
+  "summary": {
+    "meeting_status": "needs_fix",
+    "executive_summary": "Revenue grew, but the deck overstates gross margin and does not resolve the trade-off between acquisition scale and customer quality."
+  },
+  "page_risk_map": [
+    {"page": 1, "title": "May operating review", "risk": "high", "issue_count": 2}
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "title": "Gross margin claim uses the prior-month value",
+      "type": "confirmed_error",
+      "severity": "high",
+      "confidence": "confirmed",
+      "location": "PPT page 1 | Executive summary",
+      "statement": "Gross margin remained healthy at 46%.",
+      "assessment": "The source workbook reports May gross margin at 42%; 46% is the April value.",
+      "evidence": [
+        {
+          "file": "operating-data.xlsx",
+          "page_or_sheet": "Operating Summary",
+          "cell_or_object": "B3:C3",
+          "value_or_quote": "April 46%; May 42%"
+        }
+      ],
+      "recommended_fix": "Change the May gross-margin statement to 42% and explain the four-point decline before discussing further acquisition spend."
+    },
+    {
+      "id": "F02",
+      "title": "The recommendation does not address customer-quality decline",
+      "type": "logic_gap",
+      "severity": "high",
+      "confidence": "confirmed",
+      "location": "PPT page 1 | Recommendation",
+      "statement": "Increase ad spend by another 20%.",
+      "assessment": "Ad spend rose from 20,000 to 28,000 while paid D1 retention fell from 31% to 26%; the recommendation lacks a quality guardrail.",
+      "evidence": [
+        {
+          "file": "operating-data.xlsx",
+          "page_or_sheet": "Operating Summary",
+          "cell_or_object": "B4:C5",
+          "value_or_quote": "Paid D1 retention 31% to 26%; ad spend 20,000 to 28,000"
+        }
+      ],
+      "recommended_fix": "Define a retention threshold and channel-level test before approving another budget increase."
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q01",
+      "priority": "high",
+      "question": "Why should we increase acquisition spend when gross margin and paid-user retention both declined?",
+      "why_it_may_be_asked": "The proposal asks for more budget without proving that the acquired growth is profitable or durable.",
+      "direct_answer": "The current evidence does not support an unconditional 20% increase. A smaller channel-level test with a 30% D1 retention guardrail should come first.",
+      "evidence": [
+        {
+          "file": "operating-data.xlsx",
+          "page_or_sheet": "Operating Summary",
+          "cell_or_object": "B3:C5",
+          "value_or_quote": "Gross margin 46% to 42%; paid D1 retention 31% to 26%; ad spend 20,000 to 28,000"
+        }
+      ],
+      "unknowns": ["Channel-level retention and margin are not available"],
+      "next_question": "Which channel should receive the test budget, and what result would stop the test?",
+      "based_on_unfixed_error": false
+    }
+  ],
+  "simulation": {
+    "title": "Demo rehearsal | CEO + Finance + Growth",
+    "opening": "Answer in your own words first, then compare against the evidence-grounded answer.",
+    "rounds": [
+      {
+        "id": "S01",
+        "role": "CEO",
+        "question": "Is May's growth actually healthy?",
+        "intent": "Test whether the owner recognizes the quality trade-off.",
+        "answer_status": "partial",
+        "suggested_answer": "Revenue grew 12%, but gross margin fell to 42% and paid D1 retention fell to 26%, so I would describe the growth as real but lower quality.",
+        "evidence": [{"file": "operating-data.xlsx", "page_or_sheet": "Operating Summary", "cell_or_object": "B2:C4", "value_or_quote": "Revenue 100,000 to 112,000; margin 46% to 42%; retention 31% to 26%"}],
+        "unknowns": ["Channel-level contribution margin"],
+        "prep_action": "Add channel-level margin and retention before the meeting.",
+        "follow_up_question": "Which part of the growth would you keep if budget were fixed?",
+        "avoid_answer": "Revenue is up, so the strategy is working."
+      },
+      {
+        "id": "S02",
+        "role": "Finance lead",
+        "question": "What is the profit impact of the four-point margin decline?",
+        "intent": "Translate a percentage change into a decision-relevant amount.",
+        "answer_status": "not_ready",
+        "suggested_answer": "The deck does not yet include a validated profit bridge, so I cannot give a reliable amount today.",
+        "evidence": [{"file": "operating-data.xlsx", "page_or_sheet": "Operating Summary", "cell_or_object": "B3:C3", "value_or_quote": "Gross margin 46% to 42%"}],
+        "unknowns": ["Refunds, variable fulfillment cost, and channel mix"],
+        "prep_action": "Prepare a gross-profit bridge using validated revenue and variable-cost data.",
+        "follow_up_question": "When will the bridge be ready, and who owns it?",
+        "avoid_answer": "The impact should be manageable."
+      },
+      {
+        "id": "S03",
+        "role": "Growth lead",
+        "question": "Which acquisition segment caused retention to fall?",
+        "intent": "Check whether the proposed response targets the actual cause.",
+        "answer_status": "not_ready",
+        "suggested_answer": "The current workbook only provides the total paid-user metric, so it cannot identify a responsible channel or segment.",
+        "evidence": [{"file": "operating-data.xlsx", "page_or_sheet": "Operating Summary", "cell_or_object": "B4:C4", "value_or_quote": "Paid D1 retention 31% to 26%"}],
+        "unknowns": ["Channel and audience-segment retention"],
+        "prep_action": "Export channel and audience-segment cohorts for April and May.",
+        "follow_up_question": "What minimum cohort size will you require before reallocating budget?",
+        "avoid_answer": "The new audience was probably lower quality."
+      },
+      {
+        "id": "S04",
+        "role": "CEO",
+        "question": "What decision are you asking us to make today?",
+        "intent": "Force a bounded, evidence-aware budget proposal.",
+        "answer_status": "decision_needed",
+        "suggested_answer": "Approve only a limited acquisition test, contingent on a 30% paid D1 retention threshold and a reviewed channel-level margin estimate.",
+        "evidence": [{"file": "operating-data.xlsx", "page_or_sheet": "Operating Summary", "cell_or_object": "C3:C5", "value_or_quote": "May margin 42%; retention 26%; ad spend 28,000"}],
+        "unknowns": [],
+        "prep_action": "The CEO and finance lead must agree on the test cap and stop conditions.",
+        "follow_up_question": "What happens if the test misses the retention threshold?",
+        "avoid_answer": "Approve 20% more spend and we will optimize along the way."
+      }
+    ],
+    "summary": {
+      "total_rounds": 4,
+      "ready": 0,
+      "partial": 1,
+      "not_ready": 2,
+      "decision_needed": 1
+    }
+  },
+  "data_requests": [
+    {
+      "id": "D01",
+      "item": "Channel-level contribution margin and paid D1 retention",
+      "reason": "Required to evaluate whether another acquisition test is profitable and durable.",
+      "priority": "Required before meeting",
+      "owner": "Growth analytics",
+      "deadline": "One business day before the meeting"
+    }
+  ]
+}

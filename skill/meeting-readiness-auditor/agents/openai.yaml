@@ -1,0 +1,5 @@
+interface:
+  display_name: "过会排雷"
+  short_description: "会前核验数据、修正汇报、逐题模拟过会并生成答辩准备包"
+  brand_color: "#6D5DFC"
+  default_prompt: "Use $meeting-readiness-auditor to audit my presentation against its source files and prepare me for the review meeting."
